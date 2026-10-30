@@ -5,3 +5,12 @@ web:
   health_path: /health
   openapi: openapi.yaml
   dockerfile: Dockerfile
+  auth:
+    type: json
+    login_url: /login
+    username_field: username
+    password_field: password
+    username_env: TEST_USERNAME
+    password_env: TEST_PASSWORD
+    logged_in_regex: '"ok":true'
+    logged_out_regex: login required

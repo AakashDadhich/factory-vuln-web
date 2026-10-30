@@ -93,6 +93,25 @@ paths:
               schema:
                 type: object
   /login:
+    post:
+      operationId: loginJson
+      summary: Sign in with a JSON body
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        "200":
+          description: Signed in, with a session cookie.
+        "401":
+          description: Invalid credentials.
     get:
       operationId: login
       summary: Start a session
@@ -110,6 +129,26 @@ paths:
             application/json:
               schema:
                 type: object
+  /account/notes:
+    get:
+      operationId: accountNotes
+      summary: Search the signed-in user's notes
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          example: hello
+      responses:
+        "200":
+          description: An HTML page.
+          content:
+            text/html:
+              schema:
+                type: string
+        "401":
+          description: Login required.
   /api/settings:
     post:
       operationId: saveSettings

@@ -41,6 +41,11 @@
   stage: dast-web
   cwe: [CWE-1004, CWE-614]
   min_severity: low
+- id: authenticated-xss
+  stage: dast-web
+  cwe: CWE-79
+  min_severity: medium
+  path: /account/notes
 - id: review-sqli
   stage: review
   cwe: CWE-89
