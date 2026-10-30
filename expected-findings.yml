@@ -1,0 +1,48 @@
+- id: sqli
+  stage: [sast-codeql, sast-semgrep]
+  cwe: CWE-89
+  min_severity: high
+  path: ^src/app\.ts$
+- id: xss
+  stage: [sast-codeql, sast-semgrep]
+  cwe: CWE-79
+  min_severity: medium
+  path: ^src/app\.ts$
+- id: cmdi
+  stage: [sast-codeql, sast-semgrep]
+  cwe: CWE-78
+  min_severity: high
+  path: ^src/app\.ts$
+- id: eval
+  stage: sast-eslint
+  rule_id: eval
+  min_severity: high
+  path: ^src/app\.ts$
+- id: hardcoded-key
+  stage: secrets
+  rule_id: generic-api-key
+  min_severity: high
+  path: ^src/app\.ts$
+- id: env-file
+  stage: secrets
+  rule_id: ^committed-env-file$
+  min_severity: high
+  path: ^\.env$
+- id: lodash
+  stage: deps-sbom
+  rule_id: GHSA-35jh-r3h4-6jhm|GHSA-p6mc-m468-83gw|GHSA-r5fr-rjxr-66jc|CVE-2021-23337|CVE-2020-8203|CVE-2026-4800
+  min_severity: high
+  path: package-lock\.json$
+- id: security-headers
+  stage: dast-web
+  cwe: [CWE-693, CWE-1021]
+  min_severity: low
+- id: cookie-flags
+  stage: dast-web
+  cwe: [CWE-1004, CWE-614]
+  min_severity: low
+- id: review-sqli
+  stage: review
+  cwe: CWE-89
+  min_severity: medium
+  optional: true
