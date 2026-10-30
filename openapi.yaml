@@ -1,0 +1,129 @@
+openapi: 3.1.0
+info:
+  title: factory-vuln-web
+  version: 0.1.0
+  description: Intentionally vulnerable app. Never deploy.
+servers:
+  - url: http://localhost:3000
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      summary: Liveness check
+      responses:
+        "200":
+          description: The app is up.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /api/user:
+    get:
+      operationId: getUser
+      summary: Look up a user by id
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: string
+          example: "1"
+      responses:
+        "200":
+          description: The user.
+          content:
+            application/json:
+              schema:
+                type: object
+  /search:
+    get:
+      operationId: search
+      summary: Echo a search term in a heading
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          example: books
+      responses:
+        "200":
+          description: An HTML page.
+          content:
+            text/html:
+              schema:
+                type: string
+  /api/ping:
+    get:
+      operationId: ping
+      summary: Ping a host
+      parameters:
+        - name: host
+          in: query
+          required: true
+          schema:
+            type: string
+          example: example.test
+      responses:
+        "200":
+          description: The ping output.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/calc:
+    get:
+      operationId: calc
+      summary: Evaluate an expression
+      parameters:
+        - name: expr
+          in: query
+          required: true
+          schema:
+            type: string
+          example: "1+1"
+      responses:
+        "200":
+          description: The result.
+          content:
+            application/json:
+              schema:
+                type: object
+  /login:
+    get:
+      operationId: login
+      summary: Start a session
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+          example: ada
+      responses:
+        "200":
+          description: The user, with a session cookie.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/settings:
+    post:
+      operationId: saveSettings
+      summary: Merge settings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: The merged settings.
+          content:
+            application/json:
+              schema:
+                type: object
