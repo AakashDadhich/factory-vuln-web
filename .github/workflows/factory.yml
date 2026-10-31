@@ -15,8 +15,8 @@ jobs:
       issues: write
       actions: read
       security-events: write
-    uses: AakashDadhich/security-factory/.github/workflows/factory.yml@main # zizmor: ignore[unpinned-uses]
+    uses: AakashDadhich/security-factory/.github/workflows/factory.yml@v1 # zizmor: ignore[unpinned-uses]
     with:
       mode: check
-      factory-ref: main
+      factory-ref: v1
     secrets: inherit # zizmor: ignore[secrets-inherit]
